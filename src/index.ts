@@ -1,3 +1,4 @@
+import fastifyCors from "@fastify/cors";
 import { app } from "./adapters/FastifyAdapter";
 import { Routes } from "./routes/Routes";
 
@@ -30,5 +31,8 @@ class Application {
 
 const application = new Application(app);
 const routes = new Routes(app);
+app.register(fastifyCors, {
+  origin: '*'
+});
 routes.setupRoutes();
 application.run();
