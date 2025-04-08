@@ -7,9 +7,10 @@ export class IMatchCharactersController {
 
     async handle(req: FastifyRequest, res: FastifyReply): Promise<void> {
         const DTO: IMatchCharactersUseCaseDTO = req.body as IMatchCharactersUseCaseDTO;
-        const { randomId1, randomId2 } = DTO.randomIds;
+        const { gender, randomId1, randomId2 } = DTO.randomIds;
         const characters: Character[] = await this.iMatchCharactersUseCase.execute({
             randomIds: {
+                gender,
                 randomId1,
                 randomId2
             }

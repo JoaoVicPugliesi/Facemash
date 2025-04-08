@@ -9,10 +9,11 @@ export class IMatchCharactersUseCase {
   async execute({
     randomIds,
   }: IMatchCharactersUseCaseDTO): Promise<Character[]> {
-    const { randomId1, randomId2 } = randomIds;
+    const { gender, randomId1, randomId2 } = randomIds;
     const characters: Character[] =
       await this.iMatchCharactersUseCaseRepo.match({
         randomIds: {
+          gender,
           randomId1,
           randomId2,
         },

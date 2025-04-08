@@ -13,10 +13,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Character {
+
+model Woman {
   id      Int    @id @default(autoincrement())
-  name    String 
+  name    String
   picture String @unique
   rating  Int    @default(1400)
-  @@map("characters")
+
+  @@map("women")
+}
+
+model Man {
+  id      Int    @id @default(autoincrement())
+  name    String
+  picture String @unique
+  rating  Int    @default(1400)
+
+  @@map("men")
 }

@@ -32,7 +32,9 @@ class Application {
 const application = new Application(app);
 const routes = new Routes(app);
 app.register(fastifyCors, {
-  origin: '*'
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type']
 });
 routes.setupRoutes();
 application.run();

@@ -5,10 +5,11 @@ export class IAddCharacterController {
     constructor(private readonly iAddCharacterUseCase: IAddCharacterUseCase) {}
 
     async handle(req: FastifyRequest, res: FastifyReply) {
-        const { name, picture }: IAddCharacterUseCaseDTO = req.body as IAddCharacterUseCaseDTO;
+        const { name, picture, gender }: IAddCharacterUseCaseDTO = req.body as IAddCharacterUseCaseDTO;
         await this.iAddCharacterUseCase.execute({
             name,
-            picture
+            picture,
+            gender
         });
 
         return res.status(201).send({ message: 'Character Created Successfully' });

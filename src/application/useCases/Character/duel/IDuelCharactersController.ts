@@ -12,7 +12,6 @@ export class IDuelCharactersController {
         res.status(200).send(
             { 
                 match: characters.response.match_characters, 
-                rank: characters.response.track_characters
             });
     }
 }

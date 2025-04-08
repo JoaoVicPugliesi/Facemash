@@ -19,25 +19,29 @@ export class IDuelCharactersUseCaseRepoImpl
   }
 
   async reassignElos({
+    gender,
     winner,
     loser,
   }: IDuelCharactersUseCaseDTO): Promise<void> {
-    await prisma.character.update({
-      where: {
-        id: winner.id,
-      },
-      data: {
-        rating: winner.rating,
-      },
-    });
+    if (gender === "female") {
+      await prisma.woman.update({
+        where: { id: winner.id },
+        data: { rating: winner.rating },
+      });
+      await prisma.woman.update({
+        where: { id: loser.id },
+        data: { rating: loser.rating },
+      });
+      return;
+    }
 
-    await prisma.character.update({
-      where: {
-        id: loser.id,
-      },
-      data: {
-        rating: loser.rating,
-      },
+    await prisma.man.update({
+      where: { id: winner.id },
+      data: { rating: winner.rating },
+    });
+    await prisma.man.update({
+      where: { id: loser.id },
+      data: { rating: loser.rating },
     });
   }
 }

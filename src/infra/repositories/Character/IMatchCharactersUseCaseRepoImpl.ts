@@ -12,11 +12,21 @@ export class IMatchCharactersUseCaseRepoImpl
     );
 
     for (const id of ids) {
-      const character: Character | null = await prisma.character.findFirst({
-        where: { id },
-      });
+      if(randomIds.gender === 'male') {
+        const character: Character | null = await prisma.man.findFirst({
+          where: { id },
+        });
 
-      if (character) characters.push(character);
+        if (character) characters.push(character);
+      }
+
+      if(randomIds.gender === 'female') {
+        const character: Character | null = await prisma.woman.findFirst({
+          where: { id },
+        });
+        
+        if (character) characters.push(character);
+      }
     }
 
     return characters;
